@@ -1,0 +1,9 @@
+
+*.pyc
+/.ipynb_checkpoints
+/.settings
+*.prefs
+*.pyc
+*.pyc
+*.so
+*.c
