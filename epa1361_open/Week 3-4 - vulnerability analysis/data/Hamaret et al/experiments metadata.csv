@@ -1,0 +1,48 @@
+SWITCH Market price determination,|O4
+SWITCH TGC obligation curve,|O4
+SWITCH carbon cap,|O4
+SWITCH carbon price determination,|O4
+SWITCH economic growth,|O4
+SWITCH electrification rate,|O4
+SWITCH interconnection capacity expansion,|O4
+SWITCH lookup curve TGC,|O4
+SWITCH low reserve margin price markup,|O4
+SWITCH physical limits,|O4
+SWITCH storage for intermittent supply,|O4
+SWTICH preference carbon curve,|O4
+demand fuel price elasticity factor,<f8
+economic lifetime biomass,<f8
+economic lifetime coal,<f8
+economic lifetime gas,<f8
+economic lifetime hydro,<f8
+economic lifetime igcc,<f8
+economic lifetime ngcc,<f8
+economic lifetime nuclear,<f8
+economic lifetime pv,<f8
+economic lifetime wind,<f8
+investment proportionality constant,<f8
+investors desired excess capacity investment,<f8
+maximum battery storage uncertainty constant,<f8
+maximum no storage penetration rate pv,<f8
+maximum no storage penetration rate wind,<f8
+price demand elasticity factor,<f8
+price volatility global resource markets,<f8
+progress ratio biomass,<f8
+progress ratio coal,<f8
+progress ratio gas,<f8
+progress ratio hydro,<f8
+progress ratio igcc,<f8
+progress ratio ngcc,<f8
+progress ratio nuclear,<f8
+progress ratio pv,<f8
+progress ratio wind,<f8
+starting construction time,<f8
+time of nuclear power plant ban,<f8
+uncertainty initial gross fuel costs,<f8
+weight factor carbon abatement,<f8
+weight factor marginal investment costs,<f8
+weight factor technological familiarity,<f8
+weight factor technological growth potential,<f8
+year,<f8
+model,|O4
+policy,|O4
