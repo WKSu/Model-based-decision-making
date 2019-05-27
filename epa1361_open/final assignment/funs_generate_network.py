@@ -34,16 +34,17 @@ def get_network(plann_steps_max=10):
     # Upload fragility curves:
     frag_curves = pd.read_excel('./data/fragcurves/frag_curves.xlsx',
                                 header=None, index_col=0).transpose()
-    calibration_factors = pd.read_excel(
-        './data/fragcurves/calfactors_pf1250.xlsx')
+    calibration_factors = pd.read_excel('./data/fragcurves/calfactors_pf1250.xlsx',
+                                        index_col=0)
 
     # Upload room for the river projects:
     steps = np.array(range(plann_steps_max))
     
+    projects = pd.read_excel('./data/rfr_strategies.xlsx', index_col=0,
+                            names=['project name', 0,1,2,3,4])
+    
     for n in steps:
-        G.add_node('RfR_projects {}'.format(n), **to_dict_dropna(
-                pd.read_excel('./data/rfr_strategies.xlsx', index_col=0,
-                      names=range(5))))
+        G.add_node('RfR_projects {}'.format(n), **to_dict_dropna(projects))
         G.node['RfR_projects {}'.format(n)]['type'] = 'measure'
 
         G.add_node('discount rate {}'.format(n), **{'value': 0})
@@ -53,7 +54,8 @@ def get_network(plann_steps_max=10):
     G.node['EWS']['type'] = 'measure'
 
     # Upload muskingum params:
-    Muskingum_params = pd.read_excel('./data/Muskingum/params.xlsx')
+    Muskingum_params = pd.read_excel('./data/Muskingum/params.xlsx',
+                                     index_col=0)
 
     # Fill network with crucial info:
     for dike in dike_list:
@@ -74,7 +76,7 @@ def get_network(plann_steps_max=10):
 
         # Assign losses per location:
         name = './data/losses_tables/{}_lossestable.xlsx'.format(dike)
-        G.node[dike]['table'] = pd.read_excel(name).values
+        G.node[dike]['table'] = pd.read_excel(name, index_col=0).values
 
         # Assign Muskingum paramters:
         G.node[dike]['C1'] = Muskingum_params.loc[G.node[dike]['prec_node'], 'C1']
@@ -83,6 +85,6 @@ def get_network(plann_steps_max=10):
             
     # The plausible 133 upstream wave-shapes:
     G.node['A.0']['Qevents_shape'] = pd.read_excel(
-        './data/hydrology/wave_shapes.xls')
+        './data/hydrology/wave_shapes.xls', index_col=0)
 
     return G, dike_list, dike_branches, steps
