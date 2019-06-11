@@ -55,7 +55,7 @@ class DikeNetwork(object):
         # Years in planning step:
         self.y_step = self.n//self.num_planning_steps
         # Step of dike increase [m]
-        self.dh = 0.5
+        self.dh = 0.1
 
         # Time step correction: Q is a mean daily value expressed in m3/s
         self.timestepcorr = 24 * 60 * 60
