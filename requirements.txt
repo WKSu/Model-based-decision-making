@@ -1,0 +1,4 @@
+ema-workbench
+platypus-opt
+SALib
+pandas == 0.24.*
