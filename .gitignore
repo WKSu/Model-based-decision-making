@@ -1,3 +1,9 @@
 .ipynb_checkpoints
 __pycache__
 .DS_store
+.settings
+*.prefs
+*.pyc
+*.pyc
+*.so
+*.c
