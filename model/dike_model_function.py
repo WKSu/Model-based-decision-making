@@ -8,10 +8,10 @@ from __future__ import division
 from copy import deepcopy
 from ema_workbench import ema_logging
 
-import funs_generate_network
-from funs_dikes import Lookuplin, dikefailure, init_node
-from funs_economy import cost_fun, discount, cost_evacuation
-from funs_hydrostat import werklijn_cdf, werklijn_inv
+from model import funs_generate_network
+from model.funs_dikes import Lookuplin, dikefailure, init_node
+from model.funs_economy import cost_fun, discount, cost_evacuation
+from model.funs_hydrostat import werklijn_cdf, werklijn_inv
 import numpy as np
 import pandas as pd
 

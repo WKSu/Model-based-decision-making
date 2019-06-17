@@ -9,7 +9,7 @@ from ema_workbench.em_framework.evaluators import perform_experiments
 from ema_workbench.em_framework.samplers import sample_uncertainties
 from ema_workbench.util import ema_logging
 import time
-from problem_formulation import get_model_for_problem_formulation
+from model.problem_formulation import get_model_for_problem_formulation
 
 
 if __name__ == '__main__':
