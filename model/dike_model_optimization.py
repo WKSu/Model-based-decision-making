@@ -7,7 +7,7 @@ from ema_workbench import (Model, MultiprocessingEvaluator,
 from ema_workbench.em_framework.optimization import EpsilonProgress, HyperVolume
 from ema_workbench.util import ema_logging
 
-from problem_formulation import get_model_for_problem_formulation
+from model.problem_formulation import get_model_for_problem_formulation
 import matplotlib.pyplot as plt
 import seaborn as sns
 
