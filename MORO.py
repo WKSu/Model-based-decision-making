@@ -222,13 +222,18 @@ robust_values = everything.groupby(
 # Finally, find the IQR ranges that are our 'noise-adjusted epsilon values'
 ranges = robust_values.apply(sp.stats.iqr)
 
+# Subset the worst case conditions
+# From CART Analysis for deaths and damages (see BaseCase.ipynb)
+
+dike_model.uncertainties['A.1_pfail'] = RealParameter('A.1_pfail', 0, 0.367)
+dike_model.uncertainties['A.3_pfail'] = RealParameter('A.3_pfail', 0, 0.226)
+
 # And now we can run the main computationally expensive MORO!
 
 BaseEvaluator.reporting_frequency = 0.1
 ema_logging.log_to_stderr(ema_logging.INFO)
 
-
-n_scenarios = 50  # 50
+n_scenarios = 30
 scenarios = sample_uncertainties(dike_model, n_scenarios)
 nfe = int(12000)
 
