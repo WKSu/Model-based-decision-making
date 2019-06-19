@@ -259,6 +259,9 @@ with MultiprocessingEvaluator(dike_model) as evaluator:
 end = time.time()
 print("Time taken: {:0.5f} minutes".format((end - start)/60))
 
+time_str = "Time: " + str(end - start) + " minutes\t Scenarios: " + str(n_scenarios) + "\t NFEs: " + str(nfe) + "\n"
+with open('Outcomes/latest_time.tsv', 'a') as f:
+    f.write(time_str)
 
 filename = 'Outcomes/MORO_s' + str(n_scenarios) + '_nfe' + str(nfe) + '.pkl'
 with open(filename, 'wb') as file_pi:
