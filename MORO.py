@@ -228,9 +228,9 @@ BaseEvaluator.reporting_frequency = 0.1
 ema_logging.log_to_stderr(ema_logging.INFO)
 
 
-n_scenarios = 1  # 50
+n_scenarios = 50  # 50
 scenarios = sample_uncertainties(dike_model, n_scenarios)
-nfe = int(1)
+nfe = int(12000)
 
 # The expected ranges are set to minimize noise as discussed in section 3.4 of doi: 10.1016/j.envsoft.2011.04.003
 epsilons = ranges.values
