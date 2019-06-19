@@ -230,11 +230,11 @@ ema_logging.log_to_stderr(ema_logging.INFO)
 
 n_scenarios = 1  # 50
 scenarios = sample_uncertainties(dike_model, n_scenarios)
-nfe = int(6)
+nfe = int(1)
 
 # The expected ranges are set to minimize noise as discussed in section 3.4 of doi: 10.1016/j.envsoft.2011.04.003
-epsilons = ranges.values / 2
-convergence = [HyperVolume(hyp_ranges_min, hyp_ranges_max),
+epsilons = ranges.values
+convergence = [HyperVolume([0,0,0,0,0], hyp_ranges_max),
                EpsilonProgress()]
 
 # Time the output
