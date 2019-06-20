@@ -83,14 +83,14 @@ def legend_without_duplicate_labels(ax):
     unique = [(h, l) for i, (h, l) in enumerate(zip(handles, labels)) if l not in labels[:i]]
     ax.legend(*zip(*unique))
     
-def mean_outcomes(results, outcome_names):
+def mean_outcomes(results, outcomes):
     '''
     This function makes the mean 
     
     Parameters
     ----------
     results : dataframe 
-    outcome_names : list
+    outcomes : list
     '''
     
     
@@ -99,12 +99,12 @@ def mean_outcomes(results, outcome_names):
     mean_outcomes_df = results.iloc[:, 52:].apply(np.mean, axis = 0)
     
     locations = ["A.1", "A.2", "A.3", "A.4", "A.5"]
-    outcomes = outcome_names
+    outcomes = outcomes
     x = [0, 1, 2]
     
     # For the base case it is only necessary to have two plots but if you want to add the costs more plots will be added 
     # max 6 outcomes.
-    if len(outcome_names) == 2:
+    if len(outcomes) == 2:
         fig, axes = plt.subplots(ncols=2, nrows=1, figsize=(8,8), sharex=True)
         axes = axes.flatten()
     else:
@@ -236,3 +236,22 @@ def boxplot_histogram_maker(results):
     for i, (ax, outcome) in enumerate(zip(axes.flatten(), outcomes_list)):
         ax.hist(results[outcome])
         ax.set_title(outcome)
+        
+def boxplot_maker(results, outcomes):
+    
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3))
+    boxplots = {}
+    policies = results['policy'].unique()
+
+    for ax, outcome in zip(axes, outcomes):
+        for policy in policies:
+            values = results[results['policy'] == policy][outcome]
+            boxplots[policy] = values
+
+        ax.boxplot([boxplots[policy] for policy in sorted(boxplots.keys())])
+
+        if outcome == 'Total Expected Annual Damage':
+            ax.set_yscale('log')
+        ax.set_title(outcome)
+
+    plt.show()
