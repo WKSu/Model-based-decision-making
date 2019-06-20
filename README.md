@@ -26,4 +26,12 @@ Make sure to install `requirements.txt`.
 
 ## Directory
 
-- /
+Main jupyter file
+
+1. Open exploration of the base case (do nothing) with 1000 scenarios
+2. Open exploration of a sampled run of 400 scenarios and 75 policies
+3. Multi-Objective Robust Optimization (MORO)
+4. Open exploration on the created policies from MORO - selection of feasible policies
+5. Sensitvity Analysis on the created policies from MORO
+
+
