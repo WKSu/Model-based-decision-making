@@ -103,7 +103,7 @@ def aggregate_outcomes(results, outcome):
 # ### Find the ranges for epsilon and hypervolume convergence
 #
 # To set $\epsilon$ values, we must minimize noise by first running a robust optimize quickly to see a Pareto front develop as stated in section 3.4 of doi: 10.1016/j.envsoft.2011.04.003 (we don't only look at Monte Carlo policies in hope that this will save time).
-results = utilities.load_results('Outcomes/400Scenarios75Policies.csv')
+results = utilities.load_results('Outcomes/MOROpolicies50Scenarios.csv')
 
 experiments, outcomes = results
 
@@ -233,13 +233,13 @@ dike_model.uncertainties['A.3_pfail'] = RealParameter('A.3_pfail', 0, 0.226)
 BaseEvaluator.reporting_frequency = 0.1
 ema_logging.log_to_stderr(ema_logging.INFO)
 
-n_scenarios = 30
+n_scenarios = 1
 scenarios = sample_uncertainties(dike_model, n_scenarios)
-nfe = int(12000)
+nfe = int(201)
 
 # The expected ranges are set to minimize noise as discussed in section 3.4 of doi: 10.1016/j.envsoft.2011.04.003
 epsilons = ranges.values
-convergence = [HyperVolume([0,0,0,0,0], hyp_ranges_max),
+convergence = [HyperVolume(hyp_ranges_min, hyp_ranges_max*1e21),
                EpsilonProgress()]
 
 # Time the output
@@ -252,13 +252,16 @@ with MultiprocessingEvaluator(dike_model) as evaluator:
                                                      epsilons=epsilons,
                                                      convergence=convergence,
                                                      convergence_freq=20,
-                                                     logging_freq=10,
+                                                     logging_freq=1,
                                                      constraint=constraints
                                                      )
 
 end = time.time()
 print("Time taken: {:0.5f} minutes".format((end - start)/60))
 
+time_str = "Time: " + str((end - start)/60) + " minutes\t Scenarios: " + str(n_scenarios) + "\t NFEs: " + str(nfe) + "\n"
+with open('Outcomes/latest_time.tsv', 'a') as f:
+    f.write(time_str)
 
 filename = 'Outcomes/MORO_s' + str(n_scenarios) + '_nfe' + str(nfe) + '.pkl'
 with open(filename, 'wb') as file_pi:
