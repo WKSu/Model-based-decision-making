@@ -37,6 +37,16 @@ ema_logging.log_to_stderr(ema_logging.INFO)
 
 
 def histogram_maker(results, outcome, n = 3):
+    '''
+    This function creates multiple histograms across time and location. 
+    
+    Parameters
+    ----------
+    results : dataframe 
+    outcome : str
+    n : int (time steps)
+    '''
+    
     locations = ["A.1", "A.2", "A.3", "A.4", "A.5"]
     colors = ['tab:red', 'tab:blue', 'tab:green', 'tab:pink', 'tab:olive']
 
@@ -61,25 +71,55 @@ def histogram_maker(results, outcome, n = 3):
 
 # https://stackoverflow.com/a/56253636
 def legend_without_duplicate_labels(ax):
+    '''
+    Helper function to remove duplicate legend labels. 
+    
+    Parameters
+    ----------
+    ax = Axes Object
+    '''
+    
     handles, labels = ax.get_legend_handles_labels()
     unique = [(h, l) for i, (h, l) in enumerate(zip(handles, labels)) if l not in labels[:i]]
     ax.legend(*zip(*unique))
     
-def mean_outcomes(results):
+def mean_outcomes(results, outcome_names):
+    '''
+    This function makes the mean 
+    
+    Parameters
+    ----------
+    results : dataframe 
+    outcome_names : list
+    '''
+    
+    
+    
 #     # Get the mean for all the results across the scenarios to have a quick look at significant locations
     mean_outcomes_df = results.iloc[:, 52:].apply(np.mean, axis = 0)
     
     locations = ["A.1", "A.2", "A.3", "A.4", "A.5"]
-    outcomes = ["Expected Annual Damage", "Expected Number of Deaths", "Dike Investment Costs", "RfR Total Costs"]
+    outcomes = outcome_names
     x = [0, 1, 2]
-
-    fig, axes = plt.subplots(ncols=2, nrows=2, figsize=(8,8), sharex=True)
-    axes = [axes[0,0],axes[0,1],axes[1,0],axes[1,1]]
+    
+    # For the base case it is only necessary to have two plots but if you want to add the costs more plots will be added 
+    # max 6 outcomes.
+    if len(outcome_names) == 2:
+        fig, axes = plt.subplots(ncols=2, nrows=1, figsize=(8,8), sharex=True)
+        axes = axes.flatten()
+    else:
+        fig, axes = plt.subplots(ncols=2, nrows=3, figsize=(8,8), sharex=True)
+        axes = axes.flatten()
+        
+    # These criteria are not specific to a location    
+    special_criteria = ["Expected Evacuation Costs", "RfR Total Costs"]
 
     for ax, criteria in zip(axes, outcomes):
         for step in x:
             for place in locations:
                 if criteria == "RfR Total Costs":
+                    ax.plot(step, mean_outcomes_df[[str(criteria) + " " + str(step)]].values[0], 'ro', c ='y')
+                elif criteria == "Expected Evacuation Costs":
                     ax.plot(step, mean_outcomes_df[[str(criteria) + " " + str(step)]].values[0], 'ro', c ='y')
                 else:
                     if place == "A.1":
@@ -112,6 +152,17 @@ def mean_outcomes(results):
 
 
 def aggregate_outcomes(results, outcome):
+    '''
+    This function creates a new column in the given dataframe with the aggregated scores. It does it inplace. 
+    
+    Parameters
+    ----------
+    results : dataframe 
+    outcome : str
+    
+    '''
+    
+    
     list_outcomes_columns = []
     
     for i in results.columns:
