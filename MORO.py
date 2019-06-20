@@ -103,7 +103,7 @@ def aggregate_outcomes(results, outcome):
 # ### Find the ranges for epsilon and hypervolume convergence
 #
 # To set $\epsilon$ values, we must minimize noise by first running a robust optimize quickly to see a Pareto front develop as stated in section 3.4 of doi: 10.1016/j.envsoft.2011.04.003 (we don't only look at Monte Carlo policies in hope that this will save time).
-results = utilities.load_results('Outcomes/400Scenarios75Policies.csv')
+results = utilities.load_results('Outcomes/MOROpolicies50Scenarios.csv')
 
 experiments, outcomes = results
 
@@ -233,13 +233,13 @@ dike_model.uncertainties['A.3_pfail'] = RealParameter('A.3_pfail', 0, 0.226)
 BaseEvaluator.reporting_frequency = 0.1
 ema_logging.log_to_stderr(ema_logging.INFO)
 
-n_scenarios = 8
+n_scenarios = 1
 scenarios = sample_uncertainties(dike_model, n_scenarios)
-nfe = int(1000)
+nfe = int(201)
 
 # The expected ranges are set to minimize noise as discussed in section 3.4 of doi: 10.1016/j.envsoft.2011.04.003
 epsilons = ranges.values
-convergence = [HyperVolume(hyp_ranges_min, hyp_ranges_max),
+convergence = [HyperVolume(hyp_ranges_min, hyp_ranges_max*1e21),
                EpsilonProgress()]
 
 # Time the output
