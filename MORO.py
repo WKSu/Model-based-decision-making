@@ -233,13 +233,13 @@ dike_model.uncertainties['A.3_pfail'] = RealParameter('A.3_pfail', 0, 0.226)
 BaseEvaluator.reporting_frequency = 0.1
 ema_logging.log_to_stderr(ema_logging.INFO)
 
-n_scenarios = 50
+n_scenarios = 8
 scenarios = sample_uncertainties(dike_model, n_scenarios)
-nfe = int(20000)
+nfe = int(1000)
 
 # The expected ranges are set to minimize noise as discussed in section 3.4 of doi: 10.1016/j.envsoft.2011.04.003
 epsilons = ranges.values
-convergence = [HyperVolume([0,0,0,0,0], hyp_ranges_max),
+convergence = [HyperVolume(hyp_ranges_min, hyp_ranges_max),
                EpsilonProgress()]
 
 # Time the output
