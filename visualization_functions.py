@@ -254,7 +254,7 @@ def boxplot_histogram_maker(results):
         
 def boxplot_maker(results, outcomes):
     
-    fig, axes = plt.subplots(2, 1, figsize=(14, 12))
+    fig, axes = plt.subplots(3, 1, figsize=(14, 12))
     boxplots = {}
     policies = results['policy'].unique()
 
