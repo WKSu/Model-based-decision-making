@@ -153,6 +153,15 @@ def aggregate_outcomes(results, outcome):
 
 
 def scatter_maker(results, outcome, n=3):
+    '''
+    Creates a scatter plot over location and time.
+
+    Parameters
+    ----------
+    results : dataframe 
+    outcome : str
+
+    '''
     locations = ["A.1", "A.2", "A.3", "A.4", "A.5"]
 
     print("Plot " + str(outcome) + "(Scatterplot)")
@@ -180,6 +189,16 @@ def scatter_maker(results, outcome, n=3):
 
 
 def pairplot_maker(results, location, n=3):
+    '''
+    Creates a pairplot maker with only the location and timestep columns.
+
+    Parameters
+    ----------
+    results : dataframe 
+    location : str
+    timestep : int
+
+    '''
     list_loc = []
     list_loc_n = []
     n = n-1
@@ -210,6 +229,14 @@ def pairplot_maker(results, location, n=3):
 
 
 def boxplot_histogram_maker(results):
+    '''
+    Creates a boxplot and a histogram for the total aggregate outcomes. The aggregate outcome needs to be run before. 
+
+    Parameters
+    ----------
+    results : dataframe 
+    '''
+    
     fig, axes = plt.subplots(1, 2, figsize=(10, 3))
     outcomes_list = ["Total Expected Number of Deaths",
                      "Total Expected Annual Damage"]
@@ -232,6 +259,14 @@ def boxplot_histogram_maker(results):
 
 
 def boxplot_maker(results, outcomes):
+    '''
+    Creates a boxplot for the outcomes. 
+
+    Parameters
+    ----------
+    results : dataframe 
+    outcomes : list of outcomes
+    '''
 
     fig, axes = plt.subplots(3, 1, figsize=(14, 12))
     boxplots = {}
