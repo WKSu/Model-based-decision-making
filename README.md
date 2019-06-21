@@ -24,6 +24,8 @@ This repo (or, rather, the folder `model`), is soft-forked from [quaquel/epa1361
 
 Make sure to install `requirements.txt`.
 
+Note: Some of the interactive widgets only work in Jupyter Notebook by default. If you want to run them in JupyterLab, you'll need [`jupyterlab-widgets`](https://pypi.org/project/jupyterlab-widgets/).
+
 ## Directory
 
 ```
