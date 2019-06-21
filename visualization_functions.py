@@ -207,16 +207,30 @@ def scatter_maker(results, outcome, n = 3):
 
 def pairplot_maker(results, location, n = 3):
     list_loc = []
+    list_loc_n = []
+    n = n-1
 
     for i in results.columns:
         if location in i:
             list_loc.append(i)
-            
-    # TO-DO:        
-    # Add other uncertentainties which do not have A.1 in name, like discount rate and flow.. 
-    list_loc.append("policy")
+        elif "RfR Total Cost" in i:
+            list_loc.append(i)
+        elif "Expected Evacuation Costs" in i:
+            list_loc.append(i)            
     
-    sns.pairplot(results[list_loc], hue='policy',  vars=results[list_loc].iloc[:, 6:-1].keys(), )
+    for i in list_loc:
+        if str(n) in i:
+            list_loc_n.append(i)
+        elif "Bmax" in i:
+            list_loc_n.append(i)
+        elif "Brate" in i:
+            list_loc_n.append(i)
+        elif "pfail" in i:
+            list_loc_n.append(i)
+            
+            
+    list_loc_n.append("policy")
+    sns.pairplot(results[list_loc_n], hue='policy',  vars=results[list_loc_n].iloc[:, :-1].keys())
     plt.tight_layout()
     plt.show()
 
@@ -226,7 +240,8 @@ def boxplot_histogram_maker(results):
     
     for i, (ax, outcome) in enumerate(zip(axes.flatten(), outcomes_list)):
         ax.boxplot(results[outcome])
-        print(str(outcome) + " First quantile: " + str(results[outcome].quantile(q = 0.25)))
+        print(str(outcome) + " First quartile (0.25): " + str(results[outcome].quantile(q = 0.25)))
+        print(str(outcome) + " Last quartile (0.75): " + str(results[outcome].quantile(q = 0.75)))
         print(str(outcome) + " Mean: " + str(results[outcome].mean()))
         
     plt.show()
@@ -239,7 +254,7 @@ def boxplot_histogram_maker(results):
         
 def boxplot_maker(results, outcomes):
     
-    fig, axes = plt.subplots(1, 2, figsize=(10, 3))
+    fig, axes = plt.subplots(2, 1, figsize=(14, 12))
     boxplots = {}
     policies = results['policy'].unique()
 
@@ -252,6 +267,8 @@ def boxplot_maker(results, outcomes):
 
         if outcome == 'Total Expected Annual Damage':
             ax.set_yscale('log')
+            
         ax.set_title(outcome)
+        ax.set_xticklabels(ax.get_xticks(), rotation = 90)
 
     plt.show()
