@@ -140,7 +140,7 @@ def mean_outcomes(results, outcomes):
 
         ax.set_xlabel("Time Steps")
         ax.set_ylabel(criteria)
-        ax.set_title(str(criteria) + " over the locations", y = 1.1)
+        ax.set_title(str(criteria) + "\nOver the Five Locations", y = 1.1)
         legend_without_duplicate_labels(ax)
 
 
