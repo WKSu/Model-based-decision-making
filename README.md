@@ -26,12 +26,24 @@ Make sure to install `requirements.txt`.
 
 ## Directory
 
+```
+---\
+    data\
+    model\
+        _Forked files from quaqel/epa1361\_open/final_assignment_
+    Outcomes\
+            _Saved modelling outputs_
+    1.
+    3.
+```
 Main jupyter file
 
 1. Open exploration of the base case (do nothing) with 1000 scenarios
-2. Open exploration of a sampled run of 400 scenarios and 75 policies
+2. Open exploration of a sample run with 400 scenarios and 75 policies
 3. Multi-Objective Robust Optimization (MORO)
 4. Open exploration on the created policies from MORO - selection of feasible policies
 5. Sensitvity Analysis on the created policies from MORO
 
+## References
 
+We are trying to somewhat follow the style guide published here: https://github.com/chrisvoncsefalvay/jupyter-best-practices

@@ -56,7 +56,6 @@ def robustness(data):
 
     return score
 
-
 def sumover_robustness(*data):
     '''
     Used to aggregate each outcome's varying location and time into one robustness score.
@@ -67,28 +66,6 @@ def sumover_robustness(*data):
     '''
     return robustness(np.sum(data, axis=1))
 
-
-# Initialize some vars to make `robustness_functions` a bit more read-able
-var_list_damage = ['A.1_Expected Annual Damage 0', 'A.1_Expected Annual Damage 1', 'A.1_Expected Annual Damage 2',
-                   'A.2_Expected Annual Damage 0', 'A.2_Expected Annual Damage 1', 'A.2_Expected Annual Damage 2',
-                   'A.3_Expected Annual Damage 0', 'A.3_Expected Annual Damage 1', 'A.3_Expected Annual Damage 2',
-                   'A.4_Expected Annual Damage 0', 'A.4_Expected Annual Damage 1', 'A.4_Expected Annual Damage 2',
-                   'A.5_Expected Annual Damage 0', 'A.5_Expected Annual Damage 1', 'A.5_Expected Annual Damage 2']
-var_list_deaths = ['A.1_Expected Number of Deaths 0', 'A.1_Expected Number of Deaths 1', 'A.1_Expected Number of Deaths 2',
-                   'A.2_Expected Number of Deaths 0', 'A.2_Expected Number of Deaths 1', 'A.2_Expected Number of Deaths 2',
-                   'A.3_Expected Number of Deaths 0', 'A.3_Expected Number of Deaths 1', 'A.3_Expected Number of Deaths 2',
-                   'A.4_Expected Number of Deaths 0', 'A.4_Expected Number of Deaths 1', 'A.4_Expected Number of Deaths 2',
-                   'A.5_Expected Number of Deaths 0', 'A.5_Expected Number of Deaths 1', 'A.5_Expected Number of Deaths 2']
-var_list_dike = ['A.1_Dike Investment Costs 0', 'A.1_Dike Investment Costs 1', 'A.1_Dike Investment Costs 2',
-                 'A.2_Dike Investment Costs 0', 'A.2_Dike Investment Costs 1', 'A.2_Dike Investment Costs 2',
-                 'A.3_Dike Investment Costs 0', 'A.3_Dike Investment Costs 1', 'A.3_Dike Investment Costs 2',
-                 'A.4_Dike Investment Costs 0', 'A.4_Dike Investment Costs 1', 'A.4_Dike Investment Costs 2',
-                 'A.5_Dike Investment Costs 0', 'A.5_Dike Investment Costs 1', 'A.5_Dike Investment Costs 2']
-var_list_rfr = ['RfR Total Costs 0', 'RfR Total Costs 1', 'RfR Total Costs 2']
-var_list_evac = ['Expected Evacuation Costs 0',
-                 'Expected Evacuation Costs 1', 'Expected Evacuation Costs 2']
-
-
 def aggregate_outcomes(results, outcome):
     list_outcomes_columns = []
 
@@ -98,7 +75,6 @@ def aggregate_outcomes(results, outcome):
 
     results["Total " + str(outcome)
             ] = results[list_outcomes_columns].sum(axis=1)
-
 
 # ### Find the ranges for epsilon and hypervolume convergence
 #
@@ -130,6 +106,27 @@ robust_values.quantile(0.75)
 
 # Define model parameters so we can run robust_optimize and find valid epsilon values.
 MINIMIZE = ScalarOutcome.MINIMIZE
+
+# Initialize some vars to make `robustness_functions` a bit more read-able
+var_list_damage = ['A.1_Expected Annual Damage 0', 'A.1_Expected Annual Damage 1', 'A.1_Expected Annual Damage 2',
+                   'A.2_Expected Annual Damage 0', 'A.2_Expected Annual Damage 1', 'A.2_Expected Annual Damage 2',
+                   'A.3_Expected Annual Damage 0', 'A.3_Expected Annual Damage 1', 'A.3_Expected Annual Damage 2',
+                   'A.4_Expected Annual Damage 0', 'A.4_Expected Annual Damage 1', 'A.4_Expected Annual Damage 2',
+                   'A.5_Expected Annual Damage 0', 'A.5_Expected Annual Damage 1', 'A.5_Expected Annual Damage 2']
+var_list_deaths = ['A.1_Expected Number of Deaths 0', 'A.1_Expected Number of Deaths 1', 'A.1_Expected Number of Deaths 2',
+                   'A.2_Expected Number of Deaths 0', 'A.2_Expected Number of Deaths 1', 'A.2_Expected Number of Deaths 2',
+                   'A.3_Expected Number of Deaths 0', 'A.3_Expected Number of Deaths 1', 'A.3_Expected Number of Deaths 2',
+                   'A.4_Expected Number of Deaths 0', 'A.4_Expected Number of Deaths 1', 'A.4_Expected Number of Deaths 2',
+                   'A.5_Expected Number of Deaths 0', 'A.5_Expected Number of Deaths 1', 'A.5_Expected Number of Deaths 2']
+var_list_dike = ['A.1_Dike Investment Costs 0', 'A.1_Dike Investment Costs 1', 'A.1_Dike Investment Costs 2',
+                 'A.2_Dike Investment Costs 0', 'A.2_Dike Investment Costs 1', 'A.2_Dike Investment Costs 2',
+                 'A.3_Dike Investment Costs 0', 'A.3_Dike Investment Costs 1', 'A.3_Dike Investment Costs 2',
+                 'A.4_Dike Investment Costs 0', 'A.4_Dike Investment Costs 1', 'A.4_Dike Investment Costs 2',
+                 'A.5_Dike Investment Costs 0', 'A.5_Dike Investment Costs 1', 'A.5_Dike Investment Costs 2']
+var_list_rfr = ['RfR Total Costs 0', 'RfR Total Costs 1', 'RfR Total Costs 2']
+var_list_evac = ['Expected Evacuation Costs 0',
+                 'Expected Evacuation Costs 1', 'Expected Evacuation Costs 2']
+
 
 # These functions need to only return one value...
 
