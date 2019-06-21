@@ -20,31 +20,36 @@ This repo (or, rather, the folder `model`), is soft-forked from [quaquel/epa1361
 - Kevin W. Su
 - Jason R. Wang
 
-## Install
+## How-To
 
-Make sure to install `requirements.txt`.
+See the Directory section below for a summarized description of our directory. Otherwise, the most important analysis files are:
 
-Note: Some of the interactive widgets only work in Jupyter Notebook by default. If you want to run them in JupyterLab, you'll need [`jupyterlab-widgets`](https://pypi.org/project/jupyterlab-widgets/).
+1. Open exploration of the base case (do nothing) with 1000 scenarios to see what happens when nothing is done
+2. Open exploration of a sample run with 400 scenarios and 75 policies to understand the output space of the model
+3. Multi-Objective Robust Optimization (MORO) on the model
+4. Open exploration on the created policies from MORO and selection of feasible policies
 
-## Directory
+These steps correspond with the `*.ipynb` files numerically. Our final report is also included, which includes a more detailed interpretation of our results – including the purpose of this project, and our reasoning, methodology, conclusions, and reflection.
+
+### Directory
+
+The files below are the important ones for running this analysis and a short description of their respective purpose.
 
 ```
 ---\
     data\
     model\
-        _Forked files from quaqel/epa1361\_open/final_assignment_
+    ------ *Forked files from quaqel/epa1361\_open/final_assignment*
     Outcomes\
-            _Saved modelling outputs_
-    1.
-    3.
+    --------- *Saved modelling outputs*
+    1-Open-Exploration-Base-Case.ipynb
+    2-Open-Exploration-400scenarios-and-75policies.ipynb
+    3-Directed-Search-MORO.ipynb
+    4-Open-Exploration-MORO-Policies.ipynb
+    requirements.txt
+    visualization_functions.py
 ```
-Main jupyter file
+Make sure to check `requirements.txt` and ensure your packages are compatible with ours.
 
-1. Open exploration of the base case (do nothing) with 1000 scenarios
-2. Open exploration of a sample run with 400 scenarios and 75 policies
-3. Multi-Objective Robust Optimization (MORO)
-4. Open exploration on the created policies from MORO - selection of feasible policies
+Note: Some of the interactive widgets only work in Jupyter Notebook by default. If you want to run them in JupyterLab, you'll need [`jupyterlab-widgets`](https://pypi.org/project/jupyterlab-widgets/).
 
-## References
-
-We are trying to somewhat follow the style guide published here: https://github.com/chrisvoncsefalvay/jupyter-best-practices
