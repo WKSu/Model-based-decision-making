@@ -44,7 +44,6 @@ Main jupyter file
 2. Open exploration of a sample run with 400 scenarios and 75 policies
 3. Multi-Objective Robust Optimization (MORO)
 4. Open exploration on the created policies from MORO - selection of feasible policies
-5. Sensitvity Analysis on the created policies from MORO
 
 ## References
 
