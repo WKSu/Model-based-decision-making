@@ -36,18 +36,18 @@ These steps correspond with the `*.ipynb` files numerically. Our final report is
 The files below are the important ones for running this analysis and a short description of their respective purpose.
 
 ```
----\
-    data\
-    model\
-    ------ *Forked files from quaqel/epa1361\_open/final_assignment*
-    Outcomes\
-    --------- *Saved modelling outputs*
-    1-Open-Exploration-Base-Case.ipynb
-    2-Open-Exploration-400scenarios-and-75policies.ipynb
-    3-Directed-Search-MORO.ipynb
-    4-Open-Exploration-MORO-Policies.ipynb
-    requirements.txt
-    visualization_functions.py
+-\
+  data\
+  model\
+  ------ *Forked files from quaqel/epa1361\_open/final_assignment*
+  Outcomes\
+  --------- *Saved modelling outputs*
+  1-Open-Exploration-Base-Case.ipynb
+  2-Open-Exploration-400scenarios-and-75policies.ipynb
+  3-Directed-Search-MORO.ipynb
+  4-Open-Exploration-MORO-Policies.ipynb
+  requirements.txt
+  visualization_functions.py
 ```
 Make sure to check `requirements.txt` and ensure your packages are compatible with ours.
 
